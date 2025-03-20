@@ -1,2 +1,2 @@
-# webman-plugin
+# webman-core
 webman foundation scaffolding

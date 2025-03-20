@@ -1,0 +1,20 @@
+<?php
+
+namespace {namespace};
+
+class {requestName} extends AbstractRequest
+{
+    /**
+     * @var array|string[]
+     */
+    public static array $rules = [
+{rules}
+    ];
+
+    /**
+     * @var array|string[]
+     */
+    public static array $message = [
+{message}
+    ];
+}

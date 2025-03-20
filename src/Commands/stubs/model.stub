@@ -1,0 +1,42 @@
+<?php
+
+namespace {namespace};
+
+use Illuminate\Database\Eloquent\Builder;
+use Nasus\Webman\Model\BasicModel;
+use plugin\admin\app\model\do\{modelName}Do;
+
+/**
+{fieldDoc}
+ */
+class {modelName} extends BasicModel
+{
+    /**
+     * The table associated with the model.
+     *
+     * @var string
+     */
+    protected $table = '{tableName}';
+
+    /**
+     * Automatic generation cannot be modified
+     *
+     * @param array $fields
+     * @return Builder
+     */
+    public static function fields(array $fields = []): Builder
+    {
+        return self::query()->select({modelName}Do::only($fields));
+    }
+
+    /**
+     * Automatic generation cannot be modified
+     *
+     * @param array $fields
+     * @return Builder
+     */
+    public static function fieldsEx(array $fields = []): Builder
+    {
+        return self::query()->select({modelName}Do::except($fields));
+    }
+}
