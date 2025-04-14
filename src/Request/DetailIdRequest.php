@@ -5,7 +5,7 @@ namespace Nasus\Webman\Request;
 /**
  * @property int $id 数据ID
  */
-class DetailIdReqyest
+class DetailIdRequest extends AbstractRequest
 {
     /**
      * @var array|string[]

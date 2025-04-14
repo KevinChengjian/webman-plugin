@@ -88,6 +88,25 @@ class Helper
     }
 
     /**
+     * 获取树结构最后一级数据
+     * @param $data
+     * @return array
+     */
+    public static function getTreeLastChildren($data): array
+    {
+        $childrens = [];
+        foreach ($data as $item) {
+            if (empty($item['children'])) {
+                $childrens[] = $item;
+            } else {
+                $childrens = array_merge($childrens, self::getTreeLastChildren($item['children']));
+            }
+        }
+
+        return $childrens;
+    }
+
+    /**
      * 获取目录下面的文件
      *
      * @param string $path

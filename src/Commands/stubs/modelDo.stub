@@ -14,7 +14,7 @@ final class {modelName}
      */
     public static function only(array $fields): array
     {
-        return array_intersect(self::FieldsArray, $fields);
+        return empty($fields) ? self::FieldsArray : array_intersect(self::FieldsArray, $fields);
     }
 
     /**

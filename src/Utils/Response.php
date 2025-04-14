@@ -3,6 +3,7 @@
 namespace Nasus\Webman\Utils;
 
 
+use Nasus\Webman\Enums\CodeInterface;
 use Webman\Http\Response as ResponseJson;
 
 

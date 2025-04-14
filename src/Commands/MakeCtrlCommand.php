@@ -77,7 +77,7 @@ class MakeCtrlCommand extends Command
             }
 
             if ($method == 'detail') {
-                $requestClass = 'DetailIdReqyest';
+                $requestClass = 'DetailIdRequest';
             }
 
             $func = sprintf($methodStub, self::METHOD_NAME[$method] ?? '', lcfirst($method), $requestClass);
