@@ -114,6 +114,7 @@ class Jwt
         $builder = $configuration->builder()
             ->issuedBy($this->iss)
             ->permittedFor($this->iat)
+            ->relatedTo($this->sub)
             ->canOnlyBeUsedAfter(Carbon::now()->setTimezone(new \DateTimeZone($this->timeZone))->toDateTimeImmutable())
             ->issuedAt(Carbon::now()->setTimezone(new \DateTimeZone($this->timeZone))->toDateTimeImmutable())
             ->expiresAt(Carbon::now()->setTimezone(new \DateTimeZone($this->timeZone))->addSeconds($this->accessExp)->toDateTimeImmutable());

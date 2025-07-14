@@ -7,6 +7,8 @@ use Nasus\Webman\Utils\Helper;
 
 class Route
 {
+    public static $routers = [];
+
     /**
      * 注册注解路由
      * @param string|null $app
@@ -18,7 +20,14 @@ class Route
         foreach ($controllers as $controller => $refs) {
             $methods = $refs['methods'] ?? [];
             foreach ($methods as $method) {
-                \Webman\Route::any($method['router'], [$refs['ref']->name, $method['name']]);
+                \Webman\Route::any($method['router'], [$refs['ref']->name, $method['name']])->middleware($method['ref']->middleware);
+                self::$routers[sprintf('%s@%s', $refs['ref']->name, $method['name'])] = [
+                    'menu' => $refs['router']->name,
+                    'title' => $method['ref']->name,
+                    'desc' => $method['ref']->desc,
+                    'authCode' => $method['authCode'],
+                    'authType' => $method['ref']?->authType?->value
+                ];
             }
         }
     }
