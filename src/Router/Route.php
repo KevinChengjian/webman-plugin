@@ -35,7 +35,7 @@ class Route
     /**
      * 扫描模块下的控制器
      *
-     * @param string $module
+     * @param string|null $module
      * @return array
      */
     public static function scan(?string $module): array
@@ -44,17 +44,19 @@ class Route
         if (is_null($module) && file_exists(app_path('controller'))) {
             foreach (Helper::scanDir(app_path('controller')) as $file) {
                 $controllerName = basename($file, '.php');
-                $moduleControllerMap['app'][] = sprintf('%s\%s', 'app\controller', $controllerName);
+                $path = 'app' . DIRECTORY_SEPARATOR . 'controller';
+                $moduleControllerMap['app'][] = sprintf('%s%s%s', $path, DIRECTORY_SEPARATOR, $controllerName);
             }
         }
 
         foreach (Helper::scanDir(base_path('plugin')) as $app) {
             if ($module && $module != $app) continue;
             $namespace = sprintf('plugin\%s\app\controller', $app);
+            $namespace = str_replace('\\', DIRECTORY_SEPARATOR, $namespace);
 
             foreach (Helper::scanDir(base_path($namespace)) as $file) {
                 $controllerName = basename($file, '.php');
-                $moduleControllerMap[$app][] = sprintf('%s\%s', $namespace, $controllerName);
+                $moduleControllerMap[$app][] = sprintf('%s%s%s', $namespace, DIRECTORY_SEPARATOR, $controllerName);
             }
         }
         return $moduleControllerMap;
